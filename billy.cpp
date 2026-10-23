@@ -129,7 +129,13 @@ void Billy::outputByte(unsigned int pos, unsigned char value) {
      */
     int offset = pos - inputPosOffset;
     if (offset >= 0 && offset < outputBufferSize) {
-        outputBuffer[offset] = value;
+        int centered = (int)value - 128;
+        int boosted = 128 + (centered * 3) / 2;
+
+        if (boosted < 0) boosted = 0;
+        if (boosted > 255) boosted = 255;
+
+        outputBuffer[offset] = (unsigned char)boosted;
         if (offset > outputBufferFill) {
             // high water mark
             outputBufferFill = offset;
