@@ -130,7 +130,7 @@ void Billy::outputByte(unsigned int pos, unsigned char value) {
     int offset = pos - inputPosOffset;
     if (offset >= 0 && offset < outputBufferSize) {
         int centered = (int)value - 128;
-        int boosted = 128 + centered * 3;
+        int boosted = 128 + centered * 10;
 
         if (boosted < 0) boosted = 0;
         if (boosted > 255) boosted = 255;
